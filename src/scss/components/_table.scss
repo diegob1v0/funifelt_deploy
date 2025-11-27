@@ -1,0 +1,86 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.admin {
+
+    .admin-content {
+
+        thead {
+            tr {
+                font-weight: 700;
+                border-bottom: 1px solid color.scale(v.$gray, $lightness: 80%);
+            }
+
+            td {
+                text-align: center;
+                padding: 2.5rem 0;
+                letter-spacing: 0.05rem;
+                font-size: 1.6rem;
+                background-color: color.scale(v.$secundary, $lightness: 80%);
+            }
+        }
+
+        tbody {
+            tr {
+                transition: background-color 0.3s ease, transform 0.2s ease;
+
+                &:hover {
+                    background-color: v.$whiteGray;
+                    transform: scale(1.01);
+                }
+
+                &:last-child td {
+                    border-bottom: none;
+                }
+            }
+
+            th,
+            td {
+                text-align: center;
+                vertical-align: middle;
+                border-bottom: 1px solid color.scale(v.$gray, $lightness: 80%);
+                font-size: 1.6rem;
+                padding: 1rem;
+
+            }
+
+            td:nth-child(3),
+            td:nth-child(4) {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 25rem;
+            }
+        }
+
+        .table-image {
+            width: 8rem;
+            height: 8rem;
+            object-fit: contain;
+            padding: 0.3rem;
+        }
+
+
+        .actions-admin {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                @include m.button(v.$secundary, v.$white);
+                padding: 1rem;
+                font-size: 1.4rem;
+                margin-right: .6rem;
+                width: auto;
+            }
+
+            button {
+                @include m.button(v.$red, v.$white);
+                padding: 1rem;
+                font-size: 1.4rem;
+            }
+
+        }
+    }
+}

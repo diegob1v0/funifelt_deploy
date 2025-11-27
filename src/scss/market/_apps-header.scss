@@ -1,0 +1,629 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.apps-header {
+    background-color: v.$white;
+    padding: 0 2rem;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        height: 48px;
+        width: 100%;
+        gap: 1.5rem;
+        position: relative;
+    }
+
+    &__logo {
+        display: block;
+        flex-shrink: 0;
+
+        img {
+            height: 40px;
+            display: block;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        gap: 2rem;
+        height: 100%;
+        align-items: center;
+        opacity: 1;
+        visibility: visible;
+        white-space: nowrap;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: v.$blackGray;
+        font-size: 1.1rem;
+        font-weight: 500;
+        padding: 0 0.5rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 3px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
+
+        &:hover {
+            color: v.$primary;
+        }
+
+        &.active {
+            color: v.$primary;
+            border-bottom-color: v.$primary;
+        }
+
+        &--button {
+            background-color: v.$primary;
+            color: v.$white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            height: auto;
+
+            &:hover {
+                color: v.$white;
+                opacity: 0.9;
+            }
+        }
+    }
+
+    &__chevron-icon {
+        font-size: 0.8em;
+        margin-left: 4px;
+    }
+
+    &__spacer {
+        flex-grow: 1;
+    }
+
+    &__search-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    &__search-input {
+        border: 1px solid transparent;
+        outline: none;
+        font-size: 1.4rem;
+        color: v.$blackGray;
+        border-radius: 20px;
+        background-color: v.$whiteGray;
+        transition: all 0.35s ease-in-out;
+
+        &::placeholder {
+            color: #888;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-left: auto;
+    }
+
+    &__icons {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    &__auth {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    &__icon-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: v.$blackGray;
+        font-size: 1.5rem;
+        padding: 0;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: v.$primary;
+        }
+
+        &--back {
+            display: none;
+        }
+    }
+
+    &__initials-circle {
+        @include m.circle(40px);
+        background-color: v.$primary;
+        color: v.$white;
+        font-weight: v.$bold;
+        font-size: 1.2rem;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        flex-shrink: 0;
+    }
+
+    &__auth-links {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    // Search Active State - Desktop
+    &.search-active {
+        @media (min-width: v.$tablet) {
+            .apps-header__nav {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                width: 0;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .apps-header__spacer {
+                flex-grow: 0;
+            }
+
+            .apps-header__search-container {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                width: 700px;
+                max-width: 70vw;
+                justify-content: center;
+            }
+
+            .apps-header__search-input {
+                opacity: 1;
+                width: 100%;
+                max-width: 700px;
+                padding: 1rem 1.5rem;
+                border-color: v.$primary;
+            }
+        }
+    }
+
+    &__mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        color: v.$blackGray;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 1.5rem;
+    }
+
+    // =================================================================
+    // Mobile & Tablet Styles 
+    // =================================================================
+    @media (max-width: v.$tablet) {
+        padding: 0 1rem;
+
+        &__content {
+            height: 44px;
+            justify-content: space-between;
+        }
+
+        &__logo {
+            img {
+                height: 36px;
+            }
+        }
+
+        &__mobile-menu-btn {
+            display: block;
+            font-size: 1.6rem;
+            padding: 0.5rem;
+        }
+
+        &__menu {
+            display: none;
+
+            &.show {
+                display: flex;
+                position: absolute; // en vez de fixed
+                top: 44px; // justo debajo del header (44px)
+                right: 0;
+                width: 85%;
+                max-width: 28rem;
+                height: auto; // ✔ se ajusta al contenido
+                max-height: calc(100vh - 44px); // por si se hace muy largo
+                background-color: v.$white;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1.5rem;
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                overflow-y: auto;
+
+                justify-content: flex-start;
+                gap: 0;
+            }
+
+        }
+
+
+        // 🔥 NAVEGACIÓN - Primera sección
+        &__nav {
+            order: 0;
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+            gap: 0.5rem;
+            margin-bottom: 0;
+            border-top: none;
+            padding-top: 0;
+        }
+
+        &__link {
+            font-size: 1.1rem;
+            height: auto;
+            border-bottom: none;
+            padding: 0.8rem 0.5rem;
+            width: 100%;
+            justify-content: flex-start;
+
+            &.active {
+                border-bottom: none;
+                background-color: v.$whiteGray;
+                border-radius: 5px;
+            }
+        }
+
+        &__spacer {
+            display: none;
+        }
+
+        // 🔥 ACCIONES - Segunda sección
+        &__actions {
+            order: 1;
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        // 🔥 BARRA DE BÚSQUEDA - Dentro de acciones
+        &__search-container {
+            position: relative;
+            top: auto; // ✔ resetea el top
+            left: auto; // ✔ resetea el left
+            transform: none;
+            height: auto;
+            width: 100%;
+            justify-content: flex-start;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            margin: 0;
+            order: 1;
+        }
+
+
+        &__search-input {
+            opacity: 1;
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1.1rem;
+            border-color: v.$primary;
+        }
+
+        .apps-header__icon-btn--back {
+            display: none;
+        }
+
+        // 🔥 ICONOS (lupa y ayuda)
+        &__icons {
+            order: 0;
+            gap: 1rem;
+            width: 100%;
+            justify-content: flex-start;
+            padding: 0.5rem 0;
+        }
+
+        &__icon-btn {
+            font-size: 1.3rem;
+            padding: 0.5rem;
+        }
+
+        // 🔥 AUTENTICACIÓN - Tercera sección
+        &__auth {
+            order: 2;
+            border-top: 1px solid v.$whiteGray;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            width: 100%;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+        }
+
+        &__auth-links {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.8rem;
+        }
+
+        &__link--button {
+            width: 100%;
+            text-align: center;
+            padding: 0.8rem 1rem;
+        }
+
+        &__initials-circle {
+            @include m.circle(36px);
+            font-size: 1rem;
+            align-self: flex-start;
+        }
+    }
+
+    // Mobile Search Active State
+    &.search-active {
+        @media (max-width: v.$tablet) {
+            .apps-header__search-container {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+
+            .apps-header__nav,
+            .apps-header__auth {
+                opacity: 0.3;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+// 🔽 DROPDOWN DE EMPRESAS ALIADAS - POSICIONAMIENTO CORREGIDO
+.allied-companies-dropdown {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: v.$white;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+    z-index: 1000;
+    min-width: 200px;
+
+    &.show {
+        display: block;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li a {
+        display: block;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        color: v.$blackGray;
+        border-radius: 4px;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: v.$whiteGray;
+        }
+    }
+}
+
+@media (max-width: v.$tablet) {
+    .allied-companies-dropdown {
+        position: static; // ✔ se comporta como un bloque normal
+        width: 100%;
+        max-width: none;
+        border-radius: 0 0 8px 8px;
+        border-top: none;
+        box-shadow: none; // opcional: que parezca parte del menú
+        margin: 0.25rem 0 0 0;
+        padding: 0.5rem 0.5rem 0.75rem;
+        z-index: 1;
+    }
+}
+
+
+// 👤 MENÚ DE PERFIL - CORREGIDO
+.profile-menu {
+    position: absolute;
+    top: 56px;
+    right: 2rem;
+    background-color: v.$white;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    min-width: 260px;
+    max-width: 320px;
+    z-index: 1100;
+    display: none;
+    overflow: hidden;
+    font-size: 0.95rem;
+
+    &.show {
+        display: block;
+    }
+
+    &__header {
+        display: flex;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid v.$whiteGray;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    &__avatar {
+        @include m.circle(40px);
+        background-color: v.$primary;
+        color: v.$white;
+        font-weight: v.$bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+        min-width: 0;
+    }
+
+    &__name {
+        margin: 0;
+        font-weight: v.$bold;
+        color: v.$blackGray;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__email {
+        margin: 0;
+        color: #666;
+        font-size: 0.85rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem 0;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: 0.6rem 1.25rem;
+        text-decoration: none;
+        color: v.$blackGray;
+        cursor: pointer;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+
+        &-label {
+            flex: 1;
+        }
+
+        &:hover {
+            background-color: v.$whiteGray;
+        }
+
+        &--logout {
+            border-top: 1px solid v.$whiteGray;
+            margin-top: 0.25rem;
+        }
+    }
+
+    &__footer {
+        padding: 0.25rem 0;
+    }
+}
+
+@media (max-width: v.$tablet) {
+    .profile-menu {
+        top: 44px;
+        right: 1rem;
+        min-width: 240px;
+
+        &__header {
+            padding: 0.8rem 1rem;
+        }
+
+        &__items {
+            padding: 0.25rem 0;
+        }
+
+        &__item {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+    }
+}
+
+// 🔍 DROPDOWN DE SUGERENCIAS DEL BUSCADOR
+.apps-header__search-container .search-suggestions {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    transform: none;
+    width: 100%;
+    max-height: 280px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    padding: 0.5rem 0;
+    z-index: 2000;
+}
+
+.apps-header__search-container a.suggestion-item {
+    color: #333;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.2rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .2s ease;
+    background-color: #fff;
+}
+
+.suggestion-item:hover {
+    background-color: v.$primary;
+    color: #fff;
+}
+
+.suggestion-name {
+    color: inherit;
+    font-size: 1.5rem;
+}
+
+.suggestion-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    object-fit: cover;
+}

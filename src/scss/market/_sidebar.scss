@@ -1,0 +1,49 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.sidebar {
+    background-color: v.$primary;
+    padding: 2rem;
+
+    @include m.tablet {
+        width: 18%;
+        min-width: 24rem;
+    }
+
+
+    img {
+        display: block;
+        margin-top: 1rem;
+        max-width: 20rem;
+        margin: 0 auto;
+    }
+
+
+    .sidebar-nav {
+        margin-top: 5rem;
+
+        a {
+            color: v.$white;
+            display: block;
+            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            padding: 1.2rem 1rem;
+            transition-property: background-color;
+            transition-duration: 300ms;
+
+            &:hover {
+                background-color: v.$secundary;
+                border-radius: .5rem;
+            }
+
+            &.active {
+                background-color: color.scale(v.$primary, $lightness: -40%);
+                border-radius: .5rem;
+            }
+        }
+    }
+
+
+}

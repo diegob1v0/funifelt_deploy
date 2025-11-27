@@ -1,0 +1,42 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'apps-header';
+
+
+.market {
+    background-color: v.$whiteGray;
+    min-height: 100vh;
+
+    @include m.tablet {
+        display: flex;
+    }
+
+    .primary {
+        flex: 1;
+    }
+
+    .content {
+        padding: 2rem 0;
+
+        &.admin_apps,
+        &.admin_allies,
+        &.admin_users {
+            margin: 5rem auto 0 auto;
+            background-color: v.$white;
+            border-radius: 1.2rem;
+            max-width: 96%;
+
+            @include m.desktop {
+                max-width: 95%;
+            }
+
+        }
+
+        .page-name {
+            margin-top: 2rem;
+            font-size: 2.8rem;
+            text-align: center;
+            font-weight: 900;
+        }
+    }
+}

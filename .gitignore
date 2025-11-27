@@ -1,0 +1,13 @@
+# Dependencias de Node y Composer
+/node_modules
+/vendor
+
+# Archivos de Build (CSS/JS compilado)
+/public/build
+
+# Archivos del sistema
+.DS_Store
+
+# Logs
+*.log
+public/php_debug_log.txt

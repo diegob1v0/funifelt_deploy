@@ -1,0 +1,124 @@
+.site-footer {
+    background-color: #1a1a1a; // Un negro un poco más suave que el fondo
+    color: #a0a0a0; // Un gris claro para el texto
+    padding: 3rem 2rem 1rem 2rem;
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
+
+    .footer-content {
+        display: grid;
+        // Diseño de 3 columnas: 1fr para la primera, 2fr (el doble) para la segunda y 1fr para la tercera.
+        grid-template-columns: 1fr; // Por defecto en móvil es 1 columna.
+        grid-template-columns: 1fr 2fr 1fr; // 3 columnas en escritorio, la del medio es más ancha.
+        gap: 2rem;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #333;
+    }
+
+    .footer-column {
+        h4 {
+            font-family: 'Kelly Slab', sans-serif; // Usando la fuente de los títulos
+            color: #ffffff;
+            font-size: 1.3rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6; // Mejora la legibilidad de los números de teléfono
+        }
+
+        a {
+            color: #a0a0a0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: #ffffff; // El texto se vuelve blanco al pasar el ratón
+            }
+        }
+    }
+
+    .social-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+
+        a {
+            font-size: 2.4rem; // <-- Iconos más grandes
+            width: 55px; // <-- Contenedor más grande
+            height: 55px; // <-- Contenedor más grande
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #333;
+            color: #a0a0a0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+
+            &:hover {
+                background-color: #26488C; // Color primario del sitio
+                color: #ffffff;
+            }
+        }
+    }
+
+    .contact-info p {
+        margin: 0.5rem 0;
+        font-size: 0.9rem; // <-- Texto más pequeño para Fax y correo
+        line-height: 1.8; // Espacio entre líneas
+    }
+
+    .footer-copyright {
+        text-align: center;
+        margin-top: 1rem;
+
+        p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+    }
+
+    // --- Colores de Hover Personalizados para Íconos Sociales ---
+    // El selector a:has(.fa-...) asegura que cambiemos el fondo del círculo (el <a>)
+    // cuando contiene un ícono específico.
+    .social-icons {
+        a:has(.fa-facebook-f):hover {
+            background-color: #1877F2; // Color de Facebook
+        }
+
+        a:has(.fa-x-twitter):hover {
+            background-color: #000000; // Color de X (Twitter)
+        }
+
+        a:has(.fa-youtube):hover {
+            background-color: #FF0000; // Color de YouTube
+        }
+
+        a:has(.fa-instagram):hover {
+            background: #d6249f; // Gradiente de Instagram (simplificado a un color)
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+
+        a:has(.fa-threads):hover {
+            background-color: #000000; // Color de Threads
+        }
+
+        a:has(.fa-linkedin-in):hover {
+            background-color: #0A66C2; // Color de LinkedIn
+        }
+
+        a:has(.fa-spotify):hover {
+            background-color: #1DB954; // Color de Spotify
+        }
+    }
+}

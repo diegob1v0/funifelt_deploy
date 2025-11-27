@@ -1,0 +1,23 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.form {
+    margin-top: 5rem;
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        label {
+            margin-bottom: 1rem;
+        }
+
+        input {
+            padding: 1rem;
+            border: 2px solid color.scale(v.$gray, $lightness: 70%);
+            border-radius: 0.5rem;
+        }
+    }
+}

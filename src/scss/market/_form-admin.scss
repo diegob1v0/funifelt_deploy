@@ -1,0 +1,90 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+
+.form-admin {
+    max-width: 70rem;
+    margin: 0 auto;
+    background-color: v.$white;
+    padding: 3rem 4rem;
+    border-radius: 1.6rem;
+    box-shadow: 0 .8rem 2rem rgba(0, 0, 0, 0.15);
+
+    h3 {
+        font-size: 2.5rem;
+        text-align: center;
+        color: v.$primary;
+    }
+
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+
+        label {
+            font-weight: 600;
+            color: v.$primary;
+            margin-bottom: 1rem;
+        }
+
+        input,
+        textarea,
+        select {
+            border: 1.5px solid color.scale(v.$whiteGray, $lightness: -20%);
+            border-radius: 1rem;
+            padding: 1rem 1.2rem;
+            font-size: 1.5rem;
+            outline: none;
+            transition: 0.2s;
+            margin-bottom: 1rem;
+
+            &:focus {
+                border-color: v.$secundary;
+                box-shadow: 0 0 6px rgba(30, 58, 138, 0.25);
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 20rem;
+        }
+
+        small {
+            color: v.$gray;
+            font-size: 1.3rem;
+        }
+
+    }
+
+    #group-price {
+        display: none;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 3rem;
+
+        @include m.tablet {
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: center;
+            gap: 0;
+        }
+
+        a {
+            @include m.button(v.$red, v.$white);
+            padding: 1.4rem 1.6rem;
+            font-size: 1.4rem;
+        }
+
+        button {
+            @include m.button(v.$primary, v.$white);
+            padding: 1.4rem 1.6rem;
+            font-size: 1.5rem;
+        }
+    }
+}

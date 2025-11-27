@@ -1,0 +1,19 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.confirm {
+    .actions {
+        margin: 0 auto;
+        @include m.button(v.$primary, v.$white);
+
+        a {
+            color: v.$white;
+
+            &:hover {
+                color: v.$white;
+            }
+        }
+    }
+
+
+}

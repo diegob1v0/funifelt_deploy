@@ -1,0 +1,47 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+@use 'sass:color';
+
+.small-image {
+    margin-top: 2rem;
+    width: 10rem;
+    height: 10rem;
+}
+
+.admin-container {
+    margin-top: 4rem;
+    padding: 1rem 2rem;
+
+    .admin {
+        user-select: none;
+        outline: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.15);
+
+        @include m.tablet {
+            overflow-x: hidden;
+        }
+
+        .admin-content {
+            width: 100%;
+            background-color: v.$white;
+            border-radius: 1rem;
+            border-collapse: collapse;
+            min-width: 65.5rem;
+            table-layout: fixed;
+
+            @include m.tablet {
+                min-width: 45rem;
+            }
+
+            &:focus {
+                outline: none;
+            }
+
+            @include m.tablet {
+                table-layout: fixed;
+            }
+        }
+    }
+}

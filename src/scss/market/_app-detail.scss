@@ -1,0 +1,193 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+@use "sass:color";
+
+// Fondo general de la página de detalle (entre header y footer)
+.app-detail-page {
+    background-color: v.$bg_page_base;
+
+    // altura mínima del área entre header y footer
+    min-height: calc(100vh - 250px);
+
+    padding: 2.5rem 1.5rem 2.5rem;
+    display: flex;
+    justify-content: center; // centra horizontal
+    align-items: center; // centra vertical
+}
+
+// Contenedor de la tarjeta de la app
+.app {
+    width: 100%;
+    max-width: 1080px; // 🔹 tarjeta más ancha
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 1.5rem;
+
+    &__container {
+        background: linear-gradient(145deg, #ffffff, #f3f4f6);
+        width: 100%;
+        padding: 3rem 3.25rem 2.75rem; // más padding → más presencia
+        border-radius: 1.9rem;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    // =========================
+    // Header: icono + info + botón
+    // =========================
+    &__header {
+        display: flex;
+        gap: 2.2rem;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    &__image-wrapper {
+        flex-shrink: 0;
+        @include m.flexCenter;
+        width: 190px;
+        height: 190px;
+        border-radius: 48px;
+        background: radial-gradient(circle at 30% 20%, #ffffff, #e5e7eb);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+    }
+
+    &__image {
+        width: 150px;
+        height: 150px;
+        border-radius: 40px;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        flex: 1;
+    }
+
+    &__title {
+        font-size: 4.6rem; // 🔹 título más grande
+        font-weight: 700;
+        color: #111827;
+        margin: 0;
+    }
+
+    &__company {
+        font-size: 1.15rem;
+        color: #6b7280;
+        margin: 0;
+    }
+
+    &__buttons {
+        margin-top: 1.3rem;
+
+        button {
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            border: none;
+            border-radius: 10rem;
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .22s ease;
+            box-shadow: 0 14px 34px rgba(37, 99, 235, 0.5);
+
+            &:hover {
+                transform: translateY(-1px) scale(1.02);
+                box-shadow: 0 18px 44px rgba(37, 99, 235, 0.6);
+            }
+
+            &:disabled {
+                opacity: .6;
+                cursor: not-allowed;
+                box-shadow: none;
+            }
+        }
+
+        a {
+            @extend button;
+            text-decoration: none;
+        }
+
+        div {
+            max-width: 35rem;
+        }
+    }
+
+    // =========================
+    // Bloque "Acerca de esta app"
+    // =========================
+    &__info {
+        text-align: left;
+        background: #ffffff;
+        padding: 1.9rem 2rem;
+        border-radius: 1.2rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+        h3 {
+            font-size: 2.4rem; // 🔹 subtítulo más grande
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 .7rem 0;
+        }
+
+        p {
+            font-size: 2.05rem; // 🔹 texto más grande
+            color: #4b5563;
+            line-height: 1.8;
+            margin: 0;
+        }
+    }
+
+    // =========================
+    // Responsive
+    // =========================
+    @media (max-width: 900px) {
+        max-width: 100%;
+        margin: 1.5rem 0;
+
+        &__container {
+            padding: 2.25rem 1.75rem;
+            border-radius: 1.4rem;
+        }
+
+        &__header {
+            flex-wrap: wrap;
+        }
+
+        &__image-wrapper {
+            width: 150px;
+            height: 150px;
+            border-radius: 32px;
+        }
+
+        &__image {
+            width: 120px;
+            height: 120px;
+            border-radius: 28px;
+        }
+
+        &__title {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 600px) {
+        &__container {
+            padding: 2rem 1.5rem;
+        }
+
+        &__header {
+            gap: 1.5rem;
+        }
+
+        &__title {
+            font-size: 1.7rem;
+        }
+    }
+}

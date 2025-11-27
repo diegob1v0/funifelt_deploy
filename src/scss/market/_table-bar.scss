@@ -1,0 +1,56 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.table-bar {
+    position: relative;
+    margin-bottom: 2rem;
+
+    @include m.tablet {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 1.5rem;
+        outline: none;
+        flex: 1;
+        padding: 1rem 1rem 1rem 4rem;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 1rem;
+
+        @include m.tablet {
+            margin-right: 8rem;
+            margin-bottom: 0;
+        }
+    }
+
+    input:focus {
+        border-color: v.$secundary;
+        box-shadow: 0 0 6px rgba(30, 58, 138, 0.25);
+    }
+
+    i:nth-child(0) {
+        position: absolute;
+        left: 1.2rem;
+    }
+
+    i.fa-magnifying-glass {
+        position: absolute;
+        left: 1.2rem;
+        top: 1.2rem;
+        color: v.$gray;
+    }
+
+    a {
+        @include m.button(v.$primary, v.$white);
+        padding: 1.2rem;
+        font-size: 1.4rem;
+
+        i {
+            margin-right: .5rem;
+            font-size: 1.3rem
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.bar {
+    background-color: v.$white;
+    padding: 2rem;
+    box-shadow: 1px 16px 9px -13px rgba(0, 0, 0, .4);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    min-height: 10rem;
+
+    .logout {
+        @include m.button(v.$primary, v.$white);
+        font-size: 1.5rem;
+        padding: 1.2rem;
+    }
+}

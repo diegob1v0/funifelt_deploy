@@ -1,0 +1,35 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.body-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: v.$secundary;
+    padding: 1rem;
+
+
+}
+
+.login {
+    width: 100%;
+    max-width: 60rem;
+    margin: 0 auto;
+    background-color: v.$white;
+    border-radius: 3rem;
+    box-shadow: 0rem 0rem 5rem 1rem v.$gray;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .container-sm {
+        padding: 2rem;
+    }
+
+    input[type="submit"] {
+        @include m.button(v.$primary, v.$white);
+    }
+
+}

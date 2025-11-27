@@ -1,0 +1,80 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+@use "sass:color";
+
+.ayuda {
+    // --- Estilos del contenedor principal de la página de Ayuda ---
+    background-color: v.$bg_page_base; // Color de fondo general de la página.
+    padding: 4rem 2rem; // Espaciado interno (4rem arriba/abajo, 2rem a los lados).
+    color: v.$white; // Color de texto por defecto para los elementos hijos.
+    min-height: 80vh; // Altura mínima para que ocupe una buena parte de la pantalla.
+    display: flex; // Usa Flexbox para controlar la alineación del contenido.
+    justify-content: center; // Centra el contenido horizontalmente.
+    align-items: flex-start; // Alinea el contenido en la parte superior.
+
+    // --- Contenedor del contenido (la "tarjeta" que agrupa el texto) ---
+    &__contenedor {
+        background-color: color.adjust(v.$bg_page_base, $lightness: 5%); // Fondo un poco más claro que el de la página para crear contraste.
+        padding: 2.5rem; // Espaciado interno para que el texto no toque los bordes.
+        border-radius: 1rem; // Bordes redondeados para un look más suave.
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); // Sombra para dar un efecto de profundidad.
+        width: 100%; // Ocupa todo el ancho posible.
+        max-width: 800px; // Límite de ancho para que no se estire demasiado en pantallas grandes.
+    }
+
+    // --- Título principal: "Centro de Ayuda" ---
+    &__titulo {
+        font-family: v.$font_headings; // Fuente especial para títulos.
+        font-size: clamp(2.8rem, 5vw + 1rem, 4.5rem); // Aumentado: Mínimo 2.8rem, ideal 5vw+1rem, Máximo 4.5rem.
+        color: v.$white; // Color del texto.
+        text-align: center; // Alineación centrada.
+        margin-bottom: 3rem; // Espacio por debajo del título.
+    }
+
+    // --- Subtítulos como "Preguntas Frecuentes (FAQ)" o "Contacto de Soporte" ---
+    &__subtitulo {
+        font-family: v.$font_headings; // Misma fuente de títulos.
+        font-size: 2.5rem; // Tamaño de fuente (ya lo habías aumentado).
+        color: v.$secundary; // Color de acento para que resalte.
+        border-bottom: 2px solid v.$secundary; // Línea inferior decorativa y de separación.
+        padding-bottom: 0.5rem; // Espacio entre el texto y la línea.
+        margin-bottom: 2rem; // Espacio por debajo del subtítulo.
+    }
+
+    // --- Bloque que agrupa un conjunto de preguntas o la sección de contacto ---
+    &__seccion {
+        margin-bottom: 3rem; // Espacio entre secciones (ej. entre FAQ y Contacto).
+    }
+
+    // --- Estilos generales para párrafos y elementos de lista ---
+    p,
+    li {
+        font-size: 1.5rem; // Tamaño de fuente para el texto principal (ya aumentado).
+        line-height: 1.7; // Altura de línea para mejorar la legibilidad.
+        color: v.$whiteGray; // Un color de texto más suave que el blanco puro.
+    }
+
+    // --- Estilos para los enlaces (como el email y los teléfonos) ---
+    a {
+        color: v.$secundary; // Mismo color de acento que los subtítulos.
+        text-decoration: none; // Quita el subrayado por defecto.
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        // Añade el subrayado solo al pasar el ratón.
+    }
+
+    // --- Estilos para cada bloque de pregunta y respuesta individual ---
+    &__pregunta {
+        margin-bottom: 1.5rem; // Espacio entre cada pregunta.
+
+        h3 {
+            font-size: 1.9rem; // Tamaño de la pregunta (ya aumentado).
+            font-weight: 700; // Texto en negrita para que destaque.
+            color: v.$white; // Color blanco para la pregunta.
+            margin-bottom: 0.5rem; // Espacio entre la pregunta y su respuesta.
+        }
+    }
+}
