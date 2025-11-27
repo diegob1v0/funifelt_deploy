@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("searcher"),t=document.querySelectorAll(".admin-content tbody tr");e.addEventListener("input",function(){const e=this.value.toLowerCase();t.forEach(t=>{const n=t.innerText.toLowerCase();t.style.display=n.includes(e)?"":"none"})})});
